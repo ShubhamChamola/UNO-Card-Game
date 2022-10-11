@@ -1,0 +1,4 @@
+node_modules
+dist
+.vscode/
+firebase.config.ts

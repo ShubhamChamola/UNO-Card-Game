@@ -1,0 +1,43 @@
+{
+  "name": "uno_card_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShinOO7/UNO-Card-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShinOO7/UNO-Card-Game/issues"
+  },
+  "homepage": "https://github.com/ShinOO7/UNO-Card-Game#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.2.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.6",
+    "firebase": "^9.10.0",
+    "redux": "^4.2.0"
+  }
+}
