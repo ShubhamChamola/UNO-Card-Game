@@ -1,0 +1,23 @@
+//background colors
+$bg-color: rgb(1, 107, 177);
+$bg-gradient: radial-gradient(
+  circle,
+  rgba(1, 107, 177, 1) 0%,
+  rgba(1, 63, 112, 1) 50%,
+  rgba(0, 50, 87, 1) 100%
+);
+$bg-auth-input-form: rgba(8, 6, 25, 0.5);
+$bg-error-input-suggestion: rgba(255, 255, 255, 0.85);
+
+//font clrs
+$primary-font-color: #fff;
+$error-heading-color: #1f2327;
+$error-para-color: #595f63;
+
+// flex gaps
+$auth-input-gap: clamp(1.2em, 1.5vw, 1.75em);
+$auth-input-form-gap: 1.75em;
+$auth-input-alternates-gap: 0.8em;
+$error-modal-gap: 0.85em;
+$error-modal-suggestion-gap: 0.45em;
+$navlinks-gap: 3em;

@@ -1,23 +1,8 @@
 {
   "name": "uno_card_game",
   "version": "1.0.0",
-  "description": "",
+  "description": "- This web app is a multiplayer platform for **UNO**.\r - About UNO\r   - Uno is a multiplayer card game in which the objective is to be the first player to get rid of all the cards in their hand.\r   - Each player is dealt with 7 cards and players take turn drawing cards.\r   - If you want to know about UNO [Click Here](https://www.ultraboardgames.com/uno/game-rules.php)\r - I made this project so i can improve my **Typescript** skills.\r - I always wanted to create an app without using any kind of library/framework.\r - This project taught me DOM manipulation, how to dynamically style your page based on some conditions or based on user input.\r - TechStack Used\r   - HTML\r   - CSS preprocessor **SASS**.\r   - TYPESCRIPT\r   - WEBPACK\r   - FIREBASE as Backend\r   - GIT as Version Control",
   "main": "index.js",
-  "scripts": {
-    "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ShinOO7/UNO-Card-Game.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ShinOO7/UNO-Card-Game/issues"
-  },
-  "homepage": "https://github.com/ShinOO7/UNO-Card-Game#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.0",
@@ -35,9 +20,24 @@
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"
   },
-  "dependencies": {
+    "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
     "firebase": "^9.10.0",
     "redux": "^4.2.0"
-  }
+  },
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShinOO7/UNO-Card-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShinOO7/UNO-Card-Game/issues"
+  },
+  "homepage": "https://github.com/ShinOO7/UNO-Card-Game#readme"
 }

@@ -1,0 +1,73 @@
+@use "./variables";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(18px, 1.5vw, 20px);
+  width: 100vw;
+  // height: 100vh;
+}
+
+body {
+  width: 100%;
+  // height: 100%;
+  font-size: 1rem;
+  background: variables.$bg-color;
+  background: variables.$bg-gradient;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  padding: 0em 2em;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  height: 100%;
+  margin-top: clamp(60px, 5vw, 80px);
+}
+
+button {
+  width: fit-content;
+  padding: 0.75em 1.25em;
+  background: rgba(254, 43, 85, 0.95);
+  color: variables.$primary-font-color;
+  font-weight: 600;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.26);
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+
+  &:active {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.26) inset;
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.26) inset;
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.26) inset;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  #root {
+    padding: 0;
+    display: block;
+    height: fit-content;
+  }
+}
