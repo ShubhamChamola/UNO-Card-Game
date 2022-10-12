@@ -1,0 +1,66 @@
+@use "../../styles/variables";
+
+nav {
+  width: 100%;
+  max-width: 1750px;
+  margin: 0 auto;
+  height: 120px;
+  padding: 1.25em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 100%;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: variables.$navlinks-gap;
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+
+    div:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    div:nth-child(2) {
+      color: variables.$primary-font-color;
+      h4,
+      span {
+        font-size: 0.7rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .logout button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    & > img {
+      width: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  nav {
+    height: 80px;
+    padding: 1em 1em;
+  }
+}
