@@ -67,3 +67,5 @@
 ## Dependencies
 
 - firebase
+- @reduxjs/toolkit
+- redux
