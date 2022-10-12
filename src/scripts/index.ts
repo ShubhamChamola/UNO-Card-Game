@@ -20,6 +20,7 @@ type userInfo = {
 };
 
 let isAuthFetched = false;
+let isHomeFetched = false;
 
 // ***
 // State Observer for auth state of user
@@ -33,9 +34,13 @@ onAuthStateChanged(auth, async (user) => {
       userInfo = JSON.parse(sessionStorage.userInfo);
     }
     store.dispatch(setUserInfo({ ...userInfo, loggedIn: true }));
+
+    // Home Initialization
+    !isHomeFetched && fetchHome();
   } else {
     store.dispatch(resetUserInfo());
     sessionStorage.removeItem("userInfo");
+
     // Auth Initialization
     !isAuthFetched && fetchAuth();
   }
@@ -48,6 +53,18 @@ const fetchAuth = async () => {
   try {
     await import("./AuthPage/authSetup");
     isAuthFetched = true;
+  } catch (error) {
+    console.log(error);
+  }
+};
+// --------------------------------------------
+
+// ***
+// HomeHandler
+const fetchHome = async () => {
+  try {
+    await import("./Home/homeSetup");
+    isHomeFetched = true;
   } catch (error) {
     console.log(error);
   }

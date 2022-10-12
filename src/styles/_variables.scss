@@ -8,6 +8,8 @@ $bg-gradient: radial-gradient(
 );
 $bg-auth-input-form: rgba(8, 6, 25, 0.5);
 $bg-error-input-suggestion: rgba(255, 255, 255, 0.85);
+$bg-server: rgba(14, 11, 42, 0.4);
+$bg-server-info: rgba(8, 6, 25, 0.3);
 
 //font clrs
 $primary-font-color: #fff;
@@ -21,3 +23,4 @@ $auth-input-alternates-gap: 0.8em;
 $error-modal-gap: 0.85em;
 $error-modal-suggestion-gap: 0.45em;
 $navlinks-gap: 3em;
+$server-browser-gap: 1.8em;
