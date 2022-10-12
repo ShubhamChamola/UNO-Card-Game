@@ -38,6 +38,10 @@
     gap: variables.$server-browser-gap;
     position: relative;
 
+    button {
+      padding: 0.4em 1em;
+    }
+
     h3 {
       font-size: 1.45rem;
       font-weight: 500;
