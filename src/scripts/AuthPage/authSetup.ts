@@ -1,5 +1,6 @@
 import { authObject } from "./auth";
 import store from "../Store/store";
+import changeDisplayProp from "../HelperFunctions/changeDisplayProp";
 
 // ***
 // On click of JOIN NOW btn
@@ -53,9 +54,9 @@ authObject.googleButton.addEventListener("click", () => {
 const authDomManipulation = function () {
   let { loggedIn } = store.getState().authState;
   if (loggedIn) {
-    authObject.removeAuthFromDOM();
+    changeDisplayProp(authObject.authSection, "hide");
   } else {
-    authObject.addAuthInDOM();
+    changeDisplayProp(authObject.authSection, "show");
   }
 };
 

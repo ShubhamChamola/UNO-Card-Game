@@ -85,10 +85,60 @@ input {
   }
 }
 
+#error-modal {
+  max-width: 600px;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: variables.$error-modal-gap;
+  cursor: pointer;
+  z-index: 1;
+
+  .error-message {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$error-modal-suggestion-gap;
+    background: variables.$bg-error-input-suggestion;
+    border-radius: 8px;
+    padding: 0.7em 1em;
+    position: relative;
+
+    h4 {
+      color: variables.$error-heading-color;
+    }
+
+    p {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: variables.$error-para-color;
+    }
+
+    img {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+}
+
+.display-none {
+  display: none !important;
+}
+
 @media only screen and (max-width: 950px) {
   #root {
     padding: 0;
     display: block;
     height: fit-content;
+  }
+  .error-modal {
+    margin-bottom: 30px;
   }
 }

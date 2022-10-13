@@ -33,6 +33,10 @@ onAuthStateChanged(auth, async (user) => {
       console.log("Taken from session storage");
       userInfo = JSON.parse(sessionStorage.userInfo);
     }
+
+    // Clear errors from error modal
+    document.querySelector("#error-modal")!.innerHTML = ``;
+
     store.dispatch(setUserInfo({ ...userInfo, loggedIn: true }));
 
     // Home Initialization
