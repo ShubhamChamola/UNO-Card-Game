@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import "./Navigation/navSetup";
 import store from "./Store/store";
 import { setUserInfo, resetUserInfo } from "./Store/Slices/authSlice";
+import loaderObject from "./Loader/loader";
 
 type signUpResponse = {
   uid: string;
@@ -55,9 +56,12 @@ onAuthStateChanged(auth, async (user) => {
 // AuthHandler
 const fetchAuth = async () => {
   try {
+    loaderObject.initiateLoader();
     await import("./AuthPage/authSetup");
     isAuthFetched = true;
+    loaderObject.removeLoader();
   } catch (error) {
+    loaderObject.removeLoader();
     console.log(error);
   }
 };
@@ -67,9 +71,12 @@ const fetchAuth = async () => {
 // HomeHandler
 const fetchHome = async () => {
   try {
+    loaderObject.initiateLoader();
     await import("./Home/homeSetup");
+    loaderObject.removeLoader();
     isHomeFetched = true;
   } catch (error) {
+    loaderObject.removeLoader();
     console.log(error);
   }
 };

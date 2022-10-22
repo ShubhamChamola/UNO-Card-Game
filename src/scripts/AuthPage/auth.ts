@@ -8,7 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import loaderObject from "../Loader/loader";
-import createCustomElement from "../HelperFunctions/createCustomElement";
+import createCustomElement from "../HelperModules/createCustomElement";
 
 const heroImgWithBg = require("../../assets/hero-img-with-bg.jpg").default;
 const googleIcon = require("../../assets/google-icon.png").default;

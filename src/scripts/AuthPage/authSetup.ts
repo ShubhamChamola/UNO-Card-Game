@@ -1,6 +1,6 @@
 import { authObject } from "./auth";
 import store from "../Store/store";
-import changeDisplayProp from "../HelperFunctions/changeDisplayProp";
+import changeDisplayProp from "../HelperModules/changeDisplayProp";
 
 // ***
 // On click of JOIN NOW btn
@@ -59,6 +59,7 @@ const authDomManipulation = function () {
     changeDisplayProp(authObject.authSection, "show");
   }
 };
+// ----------------------------------------------
 
 store.subscribe(authDomManipulation);
 // -----------------------------------------------

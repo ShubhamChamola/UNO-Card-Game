@@ -95,6 +95,12 @@
           gap: 0.7em;
           overflow-y: scroll;
 
+          & > p {
+            width: fit-content;
+            font-size: 0.85rem;
+            margin: 0 auto;
+          }
+
           li {
             background: variables.$bg-server-info;
             border-radius: 4px;
@@ -141,6 +147,24 @@
         font-size: 0.9rem;
         margin: 0 auto;
       }
+    }
+  }
+
+  .waiting-pannel {
+    align-items: center;
+    gap: 1em;
+
+    h3,
+    h4 {
+      font-weight: 500;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    button {
+      font-size: 0.95rem;
     }
   }
 }
