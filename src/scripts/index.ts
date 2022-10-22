@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import "./Navigation/navSetup";
 import store from "./Store/store";
 import { setUserInfo, resetUserInfo } from "./Store/Slices/authSlice";
+import loaderObject from "./Loader/loader";
 
 type signUpResponse = {
   uid: string;
@@ -20,6 +21,7 @@ type userInfo = {
 };
 
 let isAuthFetched = false;
+let isHomeFetched = false;
 
 // ***
 // State Observer for auth state of user
@@ -32,10 +34,18 @@ onAuthStateChanged(auth, async (user) => {
       console.log("Taken from session storage");
       userInfo = JSON.parse(sessionStorage.userInfo);
     }
+
+    // Clear errors from error modal
+    document.querySelector("#error-modal")!.innerHTML = ``;
+
     store.dispatch(setUserInfo({ ...userInfo, loggedIn: true }));
+
+    // Home Initialization
+    !isHomeFetched && fetchHome();
   } else {
     store.dispatch(resetUserInfo());
     sessionStorage.removeItem("userInfo");
+
     // Auth Initialization
     !isAuthFetched && fetchAuth();
   }
@@ -46,9 +56,27 @@ onAuthStateChanged(auth, async (user) => {
 // AuthHandler
 const fetchAuth = async () => {
   try {
+    loaderObject.initiateLoader();
     await import("./AuthPage/authSetup");
     isAuthFetched = true;
+    loaderObject.removeLoader();
   } catch (error) {
+    loaderObject.removeLoader();
+    console.log(error);
+  }
+};
+// --------------------------------------------
+
+// ***
+// HomeHandler
+const fetchHome = async () => {
+  try {
+    loaderObject.initiateLoader();
+    await import("./Home/homeSetup");
+    loaderObject.removeLoader();
+    isHomeFetched = true;
+  } catch (error) {
+    loaderObject.removeLoader();
     console.log(error);
   }
 };
