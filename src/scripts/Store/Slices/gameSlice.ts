@@ -5,6 +5,7 @@ type gameState = {
   serverID: string | null;
   playersCapacity: number;
   joined: number;
+  playersInfo: { id: string; name: string; points: number }[];
 };
 
 const initialState: gameState = {
@@ -12,6 +13,7 @@ const initialState: gameState = {
   serverID: null,
   playersCapacity: 0,
   joined: 0,
+  playersInfo: [],
 };
 
 export const gameSlice = createSlice({
@@ -28,17 +30,26 @@ export const gameSlice = createSlice({
       state.joined = action.payload;
     },
 
+    setPlayersInfo(state, action) {
+      state.playersInfo = action.payload;
+    },
+
     resetGameState(state) {
       state.lobbyID = null;
       state.serverID = null;
       state.playersCapacity = 0;
       state.joined = 0;
+      state.playersInfo = [];
     },
   },
 });
 
 // All possible actions for reduce funtion
-export const { resetGameState, initialSetUp, updateJoinedCount } =
-  gameSlice.actions;
+export const {
+  resetGameState,
+  initialSetUp,
+  updateJoinedCount,
+  setPlayersInfo,
+} = gameSlice.actions;
 
 export default gameSlice.reducer;

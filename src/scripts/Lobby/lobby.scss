@@ -1,0 +1,124 @@
+.lobby {
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  margin-top: 0 !important;
+}
+
+#player-1 {
+  background: red;
+  width: 100%;
+  height: 100%;
+}
+
+#player-2 {
+  background: yellow;
+  width: 100%;
+  height: 100%;
+}
+
+#player-3 {
+  background: pink;
+  width: 100%;
+  height: 100%;
+}
+
+#player-4 {
+  background: blue;
+  width: 100%;
+  height: 100%;
+}
+
+// styling for 2 players
+.players-2 {
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+
+  #players-1 {
+    grid-row: 3/4;
+  }
+
+  #player-2 {
+    grid-row: 1/2;
+    transform: rotate(-180deg);
+
+    .player-info {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+// styling for 3 players
+.players-3 {
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
+
+  #players-1 {
+    grid-row: 3/4;
+    grid-column: 2/3;
+  }
+
+  #player-2 {
+    grid-row: 1/4;
+    grid-column: 1/2;
+    transform: rotate(-90deg);
+  }
+
+  #player-3 {
+    grid-row: 1/4;
+    grid-column: 3/4;
+    transform: rotate(-90deg);
+
+    .player-info {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+// styling for 4 players
+.players-4 {
+  border: 2px solid black;
+  display: grid;
+  grid-template-rows: 1fr 0.4fr 0.4fr 0.4fr 1fr;
+  grid-template-columns: 1fr 0.4fr 0.4fr 0.4fr 1fr;
+
+  .main-deck {
+    grid-row: 2/5;
+    grid-column: 2/5;
+  }
+
+  #player-1 {
+    grid-row: 5/6;
+    grid-column: 1/6;
+  }
+
+  #player-2 {
+    grid-row: 1/3;
+    grid-column: 1/3;
+    transform-origin: top left;
+    // transform: rotateZ(90deg) translateY(-100%);
+  }
+
+  #player-3 {
+    grid-row: 1/2;
+    grid-column: 2/5;
+    transform: rotate(-180deg);
+
+    .player-info {
+      transform: rotate(180deg);
+    }
+  }
+
+  #player-4 {
+    grid-row: 1/3;
+    grid-column: 4/6;
+    transform-origin: top right;
+    // transform: rotateZ(90deg);
+    // .player-info {
+    //   transform: rotate(180deg);
+    // }
+  }
+}

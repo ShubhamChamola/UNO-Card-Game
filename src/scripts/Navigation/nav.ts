@@ -50,6 +50,14 @@ class NavigationClass {
   loggedOutContructor(): void {
     this.navLinks.innerHTML = "";
   }
+
+  lobbyConstructor() {
+    this.navLinks.innerHTML = `
+      <li class="exit">
+        <img src ="${logoutIcon}" alt="exit icon" />
+      </li>
+    `;
+  }
 }
 
 export const navigationObject = new NavigationClass();

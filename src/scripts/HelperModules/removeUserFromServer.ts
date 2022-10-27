@@ -1,5 +1,5 @@
 import store from "../Store/store";
-import { runTransaction, ref, set, push, get } from "firebase/database";
+import { runTransaction, ref, set, push, get, off } from "firebase/database";
 import { realtimeDB } from "../firebase.config";
 import { gameSlice } from "../Store/Slices/gameSlice";
 
@@ -7,21 +7,18 @@ async function removeUserFromServer() {
   let serverData = store.getState().gameState;
   let shouldServerBeClosed = false;
 
-  // I dont know why but when i get the data of the server from realtimeDB then only the transaction will work for the joined player else it will throw an error
-  const receivedDoc = await get(
-    ref(realtimeDB, `servers/${serverData.serverID}`)
-  );
-
   const result = await runTransaction(
-    ref(realtimeDB, `servers/${serverData.serverID}`),
+    ref(realtimeDB, `servers/${serverData.serverID}/`),
     (serverInfo) => {
       if (serverInfo) {
         serverInfo.joined--;
         if (serverInfo.joined == 0) {
           shouldServerBeClosed = true;
+        } else {
+          shouldServerBeClosed = false;
         }
-        return serverInfo;
       }
+      return serverInfo;
     }
   );
 
@@ -31,7 +28,12 @@ async function removeUserFromServer() {
     );
   } else {
     if (shouldServerBeClosed) {
-      set(ref(realtimeDB, `servers/${serverData.serverID}`), {});
+      console.log("server deleted");
+      set(ref(realtimeDB, `servers/${serverData.serverID}`), {}).then(() => {
+        off(ref(realtimeDB, `servers/${serverData.serverID}/joined`));
+        off(ref(realtimeDB, `servers/${serverData.serverID}/players`));
+        store.dispatch(gameSlice.actions.resetGameState());
+      });
     } else {
       set(
         ref(
@@ -39,10 +41,12 @@ async function removeUserFromServer() {
           `servers/${serverData.serverID}/players/${serverData.lobbyID}`
         ),
         {}
-      );
+      ).then(() => {
+        off(ref(realtimeDB, `servers/${serverData.serverID}/joined`));
+        off(ref(realtimeDB, `servers/${serverData.serverID}/players`));
+        store.dispatch(gameSlice.actions.resetGameState());
+      });
     }
-
-    store.dispatch(gameSlice.actions.resetGameState());
   }
 }
 

@@ -212,9 +212,9 @@ class Home {
             ".waiting-pannel .current-players"
           )!.textContent = snapshot.val();
 
-          if (capacity == snapshot.val()) {
-            off(ref(realtimeDB, `servers/${serverID}/joined`));
-          }
+          // if (capacity == snapshot.val()) {
+          //   off(ref(realtimeDB, `servers/${serverID}/joined`));
+          // }
         });
       }
     } catch (error: any) {
@@ -363,6 +363,10 @@ class Home {
         })
       );
 
+      off(
+        query(ref(realtimeDB, "servers/"), orderByChild("open"), equalTo(true))
+      );
+
       document.querySelector(".waiting-pannel .total-players")!.textContent =
         String(playersCapacity!);
 
@@ -374,9 +378,9 @@ class Home {
           ".waiting-pannel .current-players"
         )!.textContent = snapshot.val();
 
-        if (playersCapacity == snapshot.val()) {
-          off(ref(realtimeDB, `servers/${serverID}/joined`));
-        }
+        // if (playersCapacity == snapshot.val()) {
+        //   off(ref(realtimeDB, `servers/${serverID}/joined`));
+        // }
       });
     } catch (error: any) {
       this.displayError({
