@@ -4,8 +4,6 @@ import store from "../Store/store";
 
 lobbyObject;
 
-// store.subscribe(() => {
-//   console.log(store.getState().gameState);
-// });
+store.subscribe(lobbyObject.initiateLobby.bind(lobbyObject));
 
 export default "";

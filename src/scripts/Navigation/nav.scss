@@ -2,29 +2,114 @@
 
 nav {
   width: 100%;
-  max-width: 1750px;
+  max-width: 1920px;
   margin: 0 auto;
-  height: 120px;
-  padding: 1.25em 2em;
+  padding: clamp(20px, 2vw, 1em) clamp(15px, 2vw, 1.5em);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 4;
+  position: relative;
 }
 
 .logo {
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: clamp(50px, 8vw, 100px);
+  }
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: variables.$navlinks-gap;
+  position: relative;
 
-  .user-info {
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 20px;
+    position: relative;
+
+    span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      border-radius: 50px;
+      background-color: variables.$primary-font-color;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        background-color: inherit;
+        border-radius: inherit;
+      }
+
+      &::after {
+        top: 0;
+      }
+
+      &::before {
+        bottom: 0;
+      }
+    }
+  }
+
+  .menu-active {
+    span {
+      background-color: transparent;
+
+      &::after {
+        background-color: white;
+        top: 50%;
+        transform: rotate(45deg) translateY(-50%);
+      }
+      &::before {
+        background-color: white;
+        bottom: 50%;
+        transform: rotate(-45deg) translateY(50%);
+      }
+    }
+  }
+
+  .exit,
+  .fullscreen {
+    width: clamp(25px, 4vw, 40px);
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .fullscreen {
+    margin-right: variables.$navlinks-gap;
+  }
+}
+
+.active {
+  display: flex !important;
+}
+
+.nav-links > .links {
+  display: flex;
+  align-items: center;
+  gap: variables.$navlinks-gap;
+  list-style: none;
+
+  & > li {
     display: flex;
     align-items: center;
-    gap: 0.75em;
+  }
+
+  .user-info {
+    gap: clamp(15px, 3vw, 1em);
+    color: variables.$primary-font-color;
 
     div:first-child {
       display: flex;
@@ -32,17 +117,20 @@ nav {
       justify-content: center;
 
       img {
-        width: 50px;
-        height: 50px;
+        width: clamp(25px, 4vw, 45px);
       }
     }
 
     div:nth-child(2) {
-      color: variables.$primary-font-color;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(5px, 4vw, 0.5em);
+
       h4,
       span {
         font-size: 0.7rem;
         font-weight: 400;
+        line-height: 1em;
       }
     }
   }
@@ -51,23 +139,44 @@ nav {
     display: flex;
     align-items: center;
     gap: 1em;
+    padding: clamp(0.25em, 2vw, 0.75em) clamp(0.35em, 2vw, 1.25em);
 
     & > img {
-      width: 30px;
-    }
-  }
-
-  .exit {
-    width: 40px;
-    img {
-      cursor: pointer;
+      width: clamp(15px, 3vw, 30px);
     }
   }
 }
 
-@media only screen and (max-width: 950px) {
-  nav {
-    height: 80px;
-    padding: 1em 1em;
+@media only screen and (max-width: 500px), only screen and (width<height) {
+  .nav-links > .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links .links {
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    position: absolute;
+    right: 5px;
+    top: 150%;
+
+    .user-info {
+      color: rgb(95, 95, 95) !important;
+
+      img {
+        filter: invert(60%);
+      }
+    }
+
+    .logout {
+      width: 100%;
+      button {
+        width: 100%;
+        gap: 10px;
+        justify-content: center;
+      }
+    }
   }
 }

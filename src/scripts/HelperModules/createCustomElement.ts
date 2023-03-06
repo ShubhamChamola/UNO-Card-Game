@@ -3,7 +3,8 @@ const createCustomElement = (
   mainChild: string,
   mainChildClasses: string[],
   mainInnerHtml: string,
-  mainChildID: string = ""
+  mainChildID: string = "",
+  dataSets: { [key: string]: string } = {}
 ): void => {
   let childElement = document.createElement(mainChild);
 
@@ -11,6 +12,11 @@ const createCustomElement = (
   childElement.id = mainChildID;
 
   childElement.innerHTML = mainInnerHtml.trim();
+  if (dataSets) {
+    for (const [dataKey, datavalue] of Object.entries(dataSets)) {
+      childElement.dataset[dataKey] = datavalue;
+    }
+  }
 
   parentElement.appendChild(childElement);
 };

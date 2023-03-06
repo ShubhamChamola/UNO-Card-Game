@@ -106,7 +106,6 @@ class Home {
   fetchServerList() {
     try {
       let list: serverInfo[] = [];
-
       onValue(
         query(ref(realtimeDB, "servers/"), orderByChild("open"), equalTo(true)),
         (snapshot) => {
@@ -211,10 +210,6 @@ class Home {
           document.querySelector(
             ".waiting-pannel .current-players"
           )!.textContent = snapshot.val();
-
-          // if (capacity == snapshot.val()) {
-          //   off(ref(realtimeDB, `servers/${serverID}/joined`));
-          // }
         });
       }
     } catch (error: any) {

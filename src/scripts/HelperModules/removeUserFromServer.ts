@@ -7,6 +7,9 @@ async function removeUserFromServer() {
   let serverData = store.getState().gameState;
   let shouldServerBeClosed = false;
 
+  off(ref(realtimeDB, `servers/${serverData.serverID}/joined`));
+  off(ref(realtimeDB, `servers/${serverData.serverID}/players`));
+
   const result = await runTransaction(
     ref(realtimeDB, `servers/${serverData.serverID}/`),
     (serverInfo) => {
@@ -22,19 +25,30 @@ async function removeUserFromServer() {
     }
   );
 
+  document.querySelector(".lobby")?.remove();
+
+  document.fullscreenElement && document.exitFullscreen();
+
   if (!result.committed) {
     throw new Error(
       "unable to delete user data from the current joined server. Please report the issue"
     );
   } else {
+    document.querySelector(".lobby")?.remove();
     if (shouldServerBeClosed) {
       console.log("server deleted");
       set(ref(realtimeDB, `servers/${serverData.serverID}`), {}).then(() => {
-        off(ref(realtimeDB, `servers/${serverData.serverID}/joined`));
-        off(ref(realtimeDB, `servers/${serverData.serverID}/players`));
         store.dispatch(gameSlice.actions.resetGameState());
       });
     } else {
+      get(ref(realtimeDB, `cards/${serverData.serverID}`)).then((snapshot) => {
+        let unFlippedCards = snapshot.val().unFlippedCards;
+        // let playerCards = snapshot.val().["pl"]
+        set(
+          ref(realtimeDB, `cards/${serverData.serverID}/${serverData.lobbyID}`),
+          {}
+        );
+      });
       set(
         ref(
           realtimeDB,
@@ -42,8 +56,6 @@ async function removeUserFromServer() {
         ),
         {}
       ).then(() => {
-        off(ref(realtimeDB, `servers/${serverData.serverID}/joined`));
-        off(ref(realtimeDB, `servers/${serverData.serverID}/players`));
         store.dispatch(gameSlice.actions.resetGameState());
       });
     }

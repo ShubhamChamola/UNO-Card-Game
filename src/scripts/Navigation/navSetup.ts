@@ -1,6 +1,8 @@
 import { navigationObject } from "./nav";
 import store from "../Store/store";
-import { auth } from "../firebase.config";
+import { auth, db } from "../firebase.config";
+import { deleteUser } from "firebase/auth";
+import { deleteDoc, doc } from "firebase/firestore";
 import removeUserFromServer from "../HelperModules/removeUserFromServer";
 
 let isLoggedOutConstructed = false;
@@ -23,7 +25,15 @@ const navModify = function () {
   } else if (loggedIn && !isLoggedInConstructed && joined == 0) {
     navigationObject.loggedInConstructor(userName!, points);
     navigationObject.logoutButton?.addEventListener("click", () => {
-      auth.signOut();
+      if (auth.currentUser?.email) {
+        auth.signOut();
+      } else {
+        deleteDoc(doc(db, "users", auth.currentUser!.uid)).then(() => {
+          deleteUser(auth.currentUser!).then(() => {
+            auth.signOut();
+          });
+        });
+      }
     });
     isLobbyConstructed = false;
     isLoggedInConstructed = true;
